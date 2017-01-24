@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212043214) do
+ActiveRecord::Schema.define(version: 20170106024818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,47 @@ ActiveRecord::Schema.define(version: 20161212043214) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "ccr_performance_reports", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.integer  "supplier_id"
+    t.string   "reporting_officer_name"
+    t.string   "reporting_officer_email"
+    t.string   "contract_type"
+    t.integer  "department_id"
+    t.string   "division"
+    t.string   "contract_location"
+    t.date     "practical_completion_estimate"
+    t.date     "practical_completion"
+    t.date     "final_report"
+    t.money    "final_value",                   scale: 2
+    t.date     "defects_liability"
+    t.string   "supplier_name"
+    t.string   "supplier_email"
+    t.integer  "score_cost"
+    t.integer  "score_time"
+    t.integer  "score_admin"
+    t.integer  "score_standards"
+    t.integer  "score_quality"
+    t.integer  "score_personnel"
+    t.integer  "score_subcontract"
+    t.integer  "score_communication"
+    t.integer  "score_safety"
+    t.integer  "score_environment"
+    t.integer  "score_design"
+    t.integer  "score_overall"
+    t.string   "acceptance_name"
+    t.string   "acceptance_email"
+    t.integer  "acceptance_status"
+    t.string   "executive_name"
+    t.string   "executive_email"
+    t.integer  "executive_status"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.index ["contract_id"], name: "index_ccr_performance_reports_on_contract_id", using: :btree
+    t.index ["department_id"], name: "index_ccr_performance_reports_on_department_id", using: :btree
+    t.index ["supplier_id"], name: "index_ccr_performance_reports_on_supplier_id", using: :btree
   end
 
   create_table "contact_people", force: :cascade do |t|
@@ -103,6 +144,8 @@ ActiveRecord::Schema.define(version: 20161212043214) do
     t.string   "vt_supplier_acn"
     t.string   "vt_supplier_address"
     t.string   "vt_supplier_email"
+    t.boolean  "autopurge"
+    t.string   "ocds_id"
   end
 
   create_table "councils", force: :cascade do |t|
@@ -149,6 +192,18 @@ ActiveRecord::Schema.define(version: 20161212043214) do
     t.integer  "score_indigenous_participation"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.integer  "supplier_id"
+    t.index ["supplier_id"], name: "index_cpr_performance_reports_on_supplier_id", using: :btree
+  end
+
+  create_table "csr_contacts", force: :cascade do |t|
+    t.string   "csr_works_no"
+    t.string   "csr_name"
+    t.string   "csr_phone"
+    t.string   "csr_dept_code"
+    t.string   "csr_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "csr_contracts", force: :cascade do |t|
@@ -166,6 +221,8 @@ ActiveRecord::Schema.define(version: 20161212043214) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.integer  "supplier_id"
+    t.integer  "csr_contact_id"
+    t.index ["csr_contact_id"], name: "index_csr_contracts_on_csr_contact_id", using: :btree
     t.index ["supplier_id"], name: "index_csr_contracts_on_supplier_id", using: :btree
   end
 
@@ -289,6 +346,11 @@ ActiveRecord::Schema.define(version: 20161212043214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ccr_performance_reports", "contracts"
+  add_foreign_key "ccr_performance_reports", "departments"
+  add_foreign_key "ccr_performance_reports", "suppliers"
+  add_foreign_key "cpr_performance_reports", "suppliers"
+  add_foreign_key "csr_contracts", "csr_contacts"
   add_foreign_key "csr_contracts", "suppliers"
   add_foreign_key "csr_performance_reports", "suppliers"
   add_foreign_key "projects", "departments"

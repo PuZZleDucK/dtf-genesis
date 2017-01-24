@@ -1,5 +1,143 @@
-<h1>New Cpr Performance Report</h1>
 
-<%= render 'form', cpr_performance_report: @cpr_performance_report %>
+<!-- <%= render 'form', cpr_performance_report: @cpr_performance_report %> -->
 
+<%= form_for(@cpr_performance_report) do |f| %>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#contract">Contract</a></li>
+  <li><a data-toggle="tab" href="#report">Report</a></li>
+  <li><a data-toggle="tab" href="#agency">Agency</a></li>
+  <li><a data-toggle="tab" href="#supplier">Supplier</a></li>
+  <li><a data-toggle="tab" href="#costing">Costing</a></li>
+  <li><a data-toggle="tab" href="#time">Time</a></li>
+  <li><a data-toggle="tab" href="#admin">Admin</a></li>
+  <li><a data-toggle="tab" href="#standards">Standards</a></li>
+  <li><a data-toggle="tab" href="#quality">Quality</a></li>
+  <li><a data-toggle="tab" href="#personnel">Personel</a></li>
+  <li><a data-toggle="tab" href="#subcontractors">Subcontractors</a></li>
+  <li><a data-toggle="tab" href="#communication">Communication</a></li>
+  <li><a data-toggle="tab" href="#safety">Safety</a></li>
+  <li><a data-toggle="tab" href="#environment">Environment</a></li>
+  <li><a data-toggle="tab" href="#design">Design</a></li>
+  <li><a data-toggle="tab" href="#overall">Overall</a></li>
+  <li><a data-toggle="tab" href="#feedback">Feedback</a></li>
+  <li><a data-toggle="tab" href="#approval">Approval</a></li>
+</ul>
+
+    <h2>Report Details</h2>
+    <dt><h4>Date of Report</h4></dt>
+    <dd><h4><%= f.date_select :cpr_report_date, value: Date.today %></h4></dd>
+    <dt><h4>Reporting Phase</h4></dt>
+    <dd><h4><%= "Phase" %></h4></dd>
+    <dt><h4>Report created:</h4></dt>
+    <dd><h4><%= @cpr_performance_report.created_at %></h4></dd>
+    <dt><h4>Report modified:</h4></dt>
+    <dd><h4><%= @cpr_performance_report.updated_at %></h4></dd>
+
+    <h2>Contract Details</h2>
+    <% if not @contract.nil? %>
+      <dt><h4>Reference</h4></dt>
+      <dd><h4><%= @contract.vt_contract_number %></h4></dd>
+      <dt><h4>Contract Value</h4></dt>
+      <dd><h4><%= f.number_field :cpr_actual_price, value: @contract.vt_total_value %></h4></dd>
+      <dt><h4>Contract Title</h4></dt>
+      <dd><h4><%= @contract.vt_title %></h4></dd>
+      <dt><h4>Contract Start</h4></dt>
+      <dd><h4><%= @contract.vt_start_date %> (cpr field needed)</h4></dd>
+      <dt><h4>Contract End</h4></dt>
+      <dd><h4><%= f.date_select :cpr_predicted_completion_date, value: @contract.vt_end_date %></h4></dd>
+      <dt><h4>Contract Details</h4></dt>
+      <dd><h4><%= @contract.vt_contract_description %></h4></dd>
+    <% else %>
+      <dt><h4>Reference</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contract Value</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contract Title</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contract Start</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contract End</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contract Details</h4></dt>
+      <dd><h4></h4></dd>
+    <% end %>
+    <dt><h4>Contract Type</h4></dt>
+    <dd><h4>Contractor / Consultant</h4></dd>
+    <dt><h4>Location of works</h4></dt>
+    <dd><h4></h4></dd>
+
+
+
+    <h2>Supplier Details</h2>
+    <% if not @supplier.nil? %>
+      <dt><h4>Supplier Name</h4></dt>
+      <dd><h4><%= f.text_field :cpr_supplier, value: lookup_supplier_name(@contract.vt_supplier_id), disabled: true %></h4></dd>
+      <dt><h4>Supplier Id</h4></dt>
+      <dd><h4><%= f.number_field :cpr_supplier, value: @contract.vt_supplier_id, disabled: true %></h4></dd>
+      <dt><h4>ABN</h4></dt>
+      <dd><h4><%= @supplier.abn %></h4></dd>
+      <dt><h4>ACN</h4></dt>
+      <dd><h4><%= @supplier.acn %></h4></dd>
+      <dt><h4>Contact Email</h4></dt>
+      <dd><h4><%= @supplier.email %></h4></dd>
+    <% else %>
+      <dt><h4>Supplier Name</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>ABN</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>ACN</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contact Email</h4></dt>
+      <dd><h4></h4></dd>
+    <% end %>
+
+    <h2>Agency Details</h2>
+    <% if not @department.nil? %>
+      <dt><h4>Agency</h4></dt>
+      <dd><h4><%= @department.name %> (<%= @department.short_name %>)</h4></dd>
+      <% else %>
+      <dt><h4>Agency</h4></dt>
+      <dd><h4></h4></dd>
+      <% end %>
+      <dt><h4>Division / Group</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contact Name</h4></dt>
+      <% if not @contract.nil? %>
+      <dd><h4><%= @contract.vt_agency_person %></h4></dd>
+      <dt><h4>Contact Email</h4></dt>
+      <dd><h4><%= @contract.vt_agency_email %></h4></dd>
+      <dt><h4>Contact Phone</h4></dt>
+      <dd><h4><%= @contract.vt_agency_phone %></h4></dd>
+    <% else %>
+      <dd><h4></h4></dd>
+      <dt><h4>Contact Email</h4></dt>
+      <dd><h4></h4></dd>
+      <dt><h4>Contact Phone</h4></dt>
+      <dd><h4></h4></dd>
+    <% end %>
+
+    <h2>Confirmation</h2>
+    <dd><h4>please enter date for follow up reporting and confirm all details are correct</h4></dd>
+    <dt><h4>Practical Completion</h4></dt>
+    <dd><h4><%= f.date_select :cpr_adjusted_completion_date, value: (@contract.vt_end_date + 30.days) %></h4></dd>
+    <dt><h4>Confirm details?</h4></dt>
+    <dd><h4>
+      <div class="actions">
+        No
+      </div>
+      <div class="actions">
+        <%= hidden_field_tag(:contract_id, @contract.id) %>
+        <%= hidden_field_tag(:supplier_id, @contract.vt_supplier_id) %>
+        <%= hidden_field_tag(:supplier_name, @contract.vt_supplier_name) %>
+        <%= hidden_field_tag(:department, @contract.vt_department_id) %>
+        <%= hidden_field_tag(:reason, "Manualy initiated") %>
+        <%= f.submit "Yes, initiate reporting" %>
+      </div>
+    </h4></dd>
+
+
+  </dl>
+
+<% end %>
 <%= link_to 'Back', cpr_performance_reports_path %>

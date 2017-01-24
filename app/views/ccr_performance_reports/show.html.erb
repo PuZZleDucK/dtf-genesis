@@ -1,0 +1,21 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+
+<% if @ccr_performance_report.score_overall.nil? %>
+
+  <h1>Reporting process initiated</h1>
+
+  <p>A link to the reporting form will be sent to <strong><%= @ccr_performance_report.reporting_officer_name %></strong> &lt;<%= @ccr_performance_report.reporting_officer_email %>&gt; on <strong><%= @ccr_performance_report.practical_completion_estimate %></strong>.</p>
+
+  <p>The link is provided here and on the contracts main page for your reference: <strong><%= link_to "Reporting Link", edit_ccr_performance_report_path(@ccr_performance_report) %></strong></p>
+
+
+
+  <%= link_to 'Edit reporting details', edit_ccr_performance_report_path(@ccr_performance_report) %> |
+  <%= link_to 'CCR Report List', ccr_performance_reports_path %>
+<% else %>
+  <h1>Reporting process completed</h1>
+  <p>The report can be viewed on the contract page and edited by following the following links:</p>
+  <p><%= link_to "Contract", contract_path(@contract) %></p>
+  <p><%= link_to "Edit", edit_ccr_performance_report_path(@ccr_performance_report) %></p>
+<% end %>

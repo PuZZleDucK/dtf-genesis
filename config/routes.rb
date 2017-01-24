@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :ccr_performance_reports
   resources :departments
   resources :contract_statuses
   resources :contract_types
@@ -33,5 +34,5 @@ Rails.application.routes.draw do
 
   get 'pages/home'
   get 'pages/about'
-  root 'pages#home'
+  root 'contracts#index'
 end

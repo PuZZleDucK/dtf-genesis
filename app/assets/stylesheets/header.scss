@@ -1,0 +1,75 @@
+.main-header {
+  width: 100%;
+}
+div.nav-menu {
+    width: 96%;
+    margin-left: 2%;
+    margin-top: -20px;
+}
+
+nav {
+  width: 99%;
+  margin: 0 auto;
+}
+
+nav.nav-extended .nav-wrapper{
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav.nav-extended .nav-wrapper {
+  background-color: rgba(68, 135, 244, 1);
+  height: 132px;
+  -moz-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+  -webkit-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.nav-text{
+  margin-top: -3px;
+  margin-left: 80px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+nav ul a:hover{
+  background-color: rgba(33, 150, 243, 1);
+}
+
+nav ul li.active {
+  border-bottom: 4px solid rgba(255, 255, 0, 1);
+  background-color: rgba(33, 150, 243, 1);
+}
+
+div.nav-menu{
+  width: 96%;
+  margin-left: 2%;
+}
+
+nav .brand-logo{
+  color: #333333;
+}
+
+// login / logout
+.nav-btn{
+  position: relative;
+  top: -5px;
+  right: 45px;
+  border-radius: 20px;
+  border: none;
+  text-transform: capitalize;
+  color: white;
+}
+
+.nav-btn:hover{
+  color: white;
+}
+
+
+
+
+

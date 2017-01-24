@@ -1,0 +1,25 @@
+div.main-footer{
+  margin-right: auto;
+  margin-left: auto;
+  width: 99.8%;
+}
+
+div.footer-wrapper{
+  background-color: rgba(68, 135, 244, 1);
+  height: 50px;
+  -moz-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+  -webkit-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.349019607843137);
+  width: 99%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+div.footer-text{
+  width: 100%;
+  text-align: center;
+}
+
+#copyright{
+  color: white;
+}

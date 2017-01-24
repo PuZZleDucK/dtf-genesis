@@ -1,10 +1,10 @@
-<%= form_for(cpr_performance_report) do |f| %>
-  <% if cpr_performance_report.errors.any? %>
+<%= form_for(@cpr_performance_report) do |f| %>
+  <% if @cpr_performance_report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(cpr_performance_report.errors.count, "error") %> prohibited this cpr_performance_report from being saved:</h2>
+      <h2><%= pluralize(@cpr_performance_report.errors.count, "error") %> prohibited this cpr_performance_report from being saved:</h2>
 
       <ul>
-      <% cpr_performance_report.errors.full_messages.each do |message| %>
+      <% @cpr_performance_report.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -13,17 +13,29 @@
 
   <div class="field">
     <%= f.label :cpr_contract %>
+    <% if not @contract.nil? %>
+      <%= f.number_field :cpr_contract, value: @contract.id, disabled: true %>
+    <% else %>
     <%= f.number_field :cpr_contract %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= f.label :cpr_supplier %>
-    <%= f.number_field :cpr_supplier %>
+    <% if not @contract.nil? %>
+      <%= f.number_field :cpr_supplier, value: @contract.vt_supplier_id, disabled: true %>
+    <% else %>
+      <%= f.number_field :cpr_supplier %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= f.label :cpr_client %>
-    <%= f.text_field :cpr_client %>
+    <% if not @department.nil? %>
+      <%= f.text_field :cpr_client, value: @department.name, disabled: true %>
+    <% else %>
+      <%= f.text_field :cpr_client %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -33,7 +45,7 @@
 
   <div class="field">
     <%= f.label :cpr_report_date %>
-    <%= f.date_select :cpr_report_date %>
+    <%= f.date_select :cpr_report_date, value: Date.today, disabled: true  %>
   </div>
 
   <div class="field">
@@ -43,7 +55,11 @@
 
   <div class="field">
     <%= f.label :cpr_report_reason %>
-    <%= f.text_field :cpr_report_reason %>
+    <% if @reason %>
+      <%= f.text_field :cpr_report_reason, value: @reason, disabled: true %>
+    <% else %>
+      <%= f.text_field :cpr_report_reason %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -53,7 +69,11 @@
 
   <div class="field">
     <%= f.label :cpr_predicted_price %>
-    <%= f.text_field :cpr_predicted_price %>
+    <% if not @contract.nil? %>
+      <%= f.number_field :cpr_predicted_price, value: @contract.vt_total_value, disabled: true %>
+    <% else %>
+      <%= f.text_field :cpr_predicted_price %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -73,7 +93,11 @@
 
   <div class="field">
     <%= f.label :cpr_predicted_completion_date %>
-    <%= f.date_select :cpr_predicted_completion_date %>
+    <% if not @contract.nil? %>
+      <%= f.date_select :cpr_predicted_completion_date, value: @contract.vt_end_date, disabled: true %>
+    <% else %>
+      <%= f.date_select :cpr_predicted_completion_date %>
+    <% end %>
   </div>
 
   <div class="field">

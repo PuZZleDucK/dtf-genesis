@@ -15,7 +15,7 @@ gem 'rufus-scheduler'
 gem 'money-rails'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'smart_listing', '~> 1.1', '>= 1.1.2'
-gem 'bootstrap-sass', '~> 3.3.6'
+# gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 gem 'faker'
 gem 'activerecord-import'
@@ -24,7 +24,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'activeadmin', '~> 1.0.0.pre4'
-gem 'font-awesome-rails', '~> 4.5'
+# gem 'font-awesome-rails', '~> 4.5'
+gem 'materialize-sass'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
