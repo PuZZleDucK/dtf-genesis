@@ -5,7 +5,7 @@ This is the @PuZZleDucK fork of the CfA @ DTF project
 
 ## Aims
 
-1. Get tests back on track
+1. Get <strike>tests back on track</strike>
 2. Get CI/CD back on track
 3. Automate validity checking in new/updated contracts
 4. Simplify DB/UI
