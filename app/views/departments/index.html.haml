@@ -1,15 +1,18 @@
 %div.main-content
   %dl.dl-horizontal
   %h5 Departments:
-  %table.bordered.highlight.responsive-table
+  %table.bordered.highlight.responsive-table.sortable
     %thead
       %tr.row
         %th Name
         %th Short name
         %th VT Ref
+        %th Total Projects
     %tbody
       - @departments.each do |dep|
         %tr.row
           %td= link_to dep.name.titleize, department_path(dep)
           %td.center-align= dep.short_name
           %td.center-align= dep.vt_number
+          %td.center-align= Contract.where(vt_department_id: dep.vt_number).count
+         
