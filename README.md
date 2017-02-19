@@ -9,9 +9,11 @@ This is the @PuZZleDucK fork of the CfA @ DTF project
 2. Get <strike>CI/CD back on track (semaphore / codeship</strike>)
   * [ ![Codeship Status for PuZZleDucK/dtf-genesis](https://app.codeship.com/projects/df1ac380-cf8a-0134-c966-2ef68c3264a8/status?branch=master)](https://app.codeship.com/projects/200923)
   * [![Build Status](https://semaphoreci.com/api/v1/puzzleduck/dtf-genesis/branches/master/badge.svg)](https://semaphoreci.com/puzzleduck/dtf-genesis)
-3. Automate validity checking in new/updated contracts
-4. Simplify DB/UI
-5. Correct documentation
+3. <strike>Store all contract types</strike>
+4. Store all revisions and ocid
+5. Automate validity checking in new/updated contracts
+6. Simplify DB/UI
+7. Correct documentation
 
 # CfA & DTF Genesis
 

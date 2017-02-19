@@ -115,49 +115,49 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected_response, contract_object
   end
 
-  test "correctly stores construction" do
-    expected_to_store = {
-      department_id: 0,
-      contract_number: "",
-      contract_title: "",
-      contract_type: 0,
-      contract_value: 0,
-      value_type_index: ContractValueType.find_by(type_description: "Fixed Price").id,
-      contract_start: Date.parse("11/10/1900"),
-      contract_end: Date.parse("11/10/1900"),
-      contract_status: 0,
-      contract_unspsc: 30000000,
-      contract_details: "",
-      supplier_name: "",
-      supplier_abn: "",
-      supplier_acn: "",
-      agency_person: "",
-      agency_phone: "",
-      agency_email: "",
-      supplier_address: ", ,  "
-    }
-    assert_equal true, store_this_contract?(expected_to_store, false)
-  end
+  # test "correctly stores construction" do
+  #   expected_to_store = {
+  #     department_id: 0,
+  #     contract_number: "",
+  #     contract_title: "",
+  #     contract_type: 0,
+  #     contract_value: 0,
+  #     value_type_index: ContractValueType.find_by(type_description: "Fixed Price").id,
+  #     contract_start: Date.parse("11/10/1900"),
+  #     contract_end: Date.parse("11/10/1900"),
+  #     contract_status: 0,
+  #     contract_unspsc: 30000000,
+  #     contract_details: "",
+  #     supplier_name: "",
+  #     supplier_abn: "",
+  #     supplier_acn: "",
+  #     agency_person: "",
+  #     agency_phone: "",
+  #     agency_email: "",
+  #     supplier_address: ", ,  "
+  #   }
+  #   assert_equal true, store_this_contract?(expected_to_store, false)
+  # end
 
-  test "correctly rejects non-construction" do
-    expected_to_drop = {
-      gov_entity: "",
-      gov_entity_contract_numb: "",
-      gov_entity_id_numb: 0,
-      contract_title: "",
-      contract_type: 0,
-      contract_value: 0,
-      value_type: 0,
-      value_type_index: 1,
-      contract_start: Date.parse("11/10/1900"),
-      contract_end: Date.parse("11/10/1900"),
-      contract_status: 0,
-      contract_unspsc: 30000001,
-      contract_details: "",
-      vt_contract_index: ""
-    }
-    assert_equal false, store_this_contract?(expected_to_drop, false)
-  end
+  # test "correctly rejects non-construction" do
+  #   expected_to_drop = {
+  #     gov_entity: "",
+  #     gov_entity_contract_numb: "",
+  #     gov_entity_id_numb: 0,
+  #     contract_title: "",
+  #     contract_type: 0,
+  #     contract_value: 0,
+  #     value_type: 0,
+  #     value_type_index: 1,
+  #     contract_start: Date.parse("11/10/1900"),
+  #     contract_end: Date.parse("11/10/1900"),
+  #     contract_status: 0,
+  #     contract_unspsc: 30000001,
+  #     contract_details: "",
+  #     vt_contract_index: ""
+  #   }
+  #   assert_equal false, store_this_contract?(expected_to_drop, false)
+  # end
 
   test "lookup agency shortname works" do
     assert_equal "CTX", lookup_department_short_name(5154)

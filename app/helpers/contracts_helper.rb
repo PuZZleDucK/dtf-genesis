@@ -174,20 +174,16 @@ module ContractsHelper
   end
 
   def store_this_contract? contract_data, display=true
-    unspsc_keepers = [72000000, 72131700, 72100000, 77000000, 92100000, 80000000, 30000000, 31000000, 83000000, 23000000, 22000000, 25000000, 72130000, 32000000, 92101500, 72131600, 70000000, 85000000]
-    if not unspsc_keepers.include? contract_data[:contract_unspsc]
-     print "🖻" if display
-      false
-    elsif Contract.find_by(vt_contract_number: contract_data[:contract_number])
-     print "♲" if display
+    if Contract.find_by(vt_contract_number: contract_data[:contract_number])
+     puts "#{contract_data[:contract_number]}<known>" if display
       false
     else
-     print "🏗" if display
+      puts "#{contract_data[:contract_number]}<new>" if display
       true
     end
   end
 
-  def update_this_contract contract_data
+  def update_this_contract contract_data, display=true
     existing_contract = Contract.find_by(vt_contract_number: contract_data[:contract_number])
     if not existing_contract.nil?
       existing_contract.vt_status_id = contract_data[:contract_status]
@@ -210,11 +206,12 @@ module ContractsHelper
       existing_contract.vt_supplier_address = contract_data[:supplier_address]
       existing_contract.project_id = contract_data[:vt_identifier]
       existing_contract.save
+      puts "  Update #{contract_data[:contract_number]}" if display
       update_supplier_reference existing_contract
     end
   end
 
-  def store_or_skip contract_data, refresh = false
+  def store_or_skip contract_data, refresh = false, display=true
     if refresh
       update_this_contract contract_data
     end
@@ -242,6 +239,7 @@ module ContractsHelper
         vt_supplier_address: contract_data[:supplier_address],
         project_id: contract_data[:vt_identifier]
       })
+      puts "  New #{contract_data[:contract_number]}" if display
       update_supplier_reference contract
     end
   end

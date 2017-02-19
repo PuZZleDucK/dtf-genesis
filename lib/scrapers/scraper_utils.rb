@@ -48,7 +48,7 @@ def scrape_contract_ids department_indexes_to_scrape
       department_url = "https://www.tenders.vic.gov.au/tenders/contract/list.do?showSearch=false&action=contract-search-submit&issuingBusinessId=#{department_index}&issuingBusinessIdForSort=#{department_index}&pageNum=#{page_number}&awardDateFromString=#{@saved_date}"
       department_session.visit department_url
       contract_links = department_session.find_all "a#MSG2"
-      print "\n   § #{page_number}: "
+      print "\n   page #{page_number}: "
       contract_links.each do |contract_link|
         vt_reference = contract_link["href"].to_s[59..63]
         print "."
@@ -72,7 +72,7 @@ def scrape_for_references department_list_url
 end
 
 def scrape_tenders_vic refresh=false, print=true
-  print "\n ∵ TendersVIC Scrape @ #{Time.now} ∵\n"
+  print "\n :: TendersVIC Scrape @ #{Time.now} ::\n"
   contract_indexes_to_scrape = scrape_for_references("https://www.tenders.vic.gov.au/tenders/contract/list.do?action=contract-view")
   contract_session = prepare_session()
   Capybara.reset_sessions!
