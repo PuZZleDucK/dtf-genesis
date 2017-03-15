@@ -99,7 +99,7 @@ bundle exec rake migrate:value_types
 bundle exec rake migrate:unspsc
 ```
 
-10. On heroku you will need to add a phantomjs buildpack
+10. On heroku you may need to add a phantomjs buildpack
 
 ```
 heroku buildpacks:add https://github.com/stomita/heroku-buildpack-phantomjs
