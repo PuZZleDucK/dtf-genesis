@@ -86,3 +86,29 @@ Run this commands at terminal:
     u.password_confirmation = "password"
     u.save
 ```
+
+9. Run required database setup tasks (prefix with ```heroku run``` to run on production)
+
+```bash
+rails db:migrate
+bundle exec rake db:seed
+bundle exec rake migrate:contract_status
+bundle exec rake migrate:contract_types
+bundle exec rake migrate:agency
+bundle exec rake migrate:value_types
+bundle exec rake migrate:unspsc
+```
+
+10. On heroku you will need to add a phantomjs buildpack
+
+```
+heroku buildpacks:add https://github.com/stomita/heroku-buildpack-phantomjs
+```
+
+11. Now you should be able to trigger the scraper with
+
+```bash
+bundle exec rake scrape:new
+bundle exec rake scrape:update 
+```
+
